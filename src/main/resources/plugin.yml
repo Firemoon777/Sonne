@@ -1,0 +1,5 @@
+name: Sonne
+version: ${project.version}
+main: com.f1remoon.sonne.Sonne
+api-version: 1.16
+depend: [LightAPI]
