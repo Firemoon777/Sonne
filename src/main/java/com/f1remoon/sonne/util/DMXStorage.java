@@ -1,6 +1,8 @@
 package com.f1remoon.sonne.util;
 
 import com.f1remoon.sonne.entity.DMXObject;
+import com.f1remoon.sonne.entity.FireDispenser;
+import com.f1remoon.sonne.entity.Lamp;
 import com.f1remoon.sonne.entity.LampMatrix;
 import com.f1remoon.sonne.json.LocationDeserializer;
 import com.f1remoon.sonne.json.LocationSerializer;
@@ -38,7 +40,16 @@ public class DMXStorage implements Serializable {
     public void addMatrix(Location l1, Location l2) {
         LampMatrix matrix = new LampMatrix(l1, l2);
         objects.add(matrix);
-        Bukkit.getLogger().info("Added new object. Total size: " + objects.size());
+    }
+
+    public void addLamp(Location l) {
+        Lamp lamp = new Lamp(l);
+        objects.add(lamp);
+    }
+
+    public void addFireDispenser(Location l) {
+        FireDispenser dispenser = new FireDispenser(l);
+        objects.add(dispenser);
     }
 
     public static void load(File f) throws IOException, ClassNotFoundException {

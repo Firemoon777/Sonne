@@ -44,6 +44,7 @@ public final class Sonne extends JavaPlugin {
         getCommand("add").setExecutor(new AddCommand());
         getCommand("list").setExecutor(new ListCommand());
         getCommand("delete").setExecutor(new DeleteCommand());
+
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
     }
 
