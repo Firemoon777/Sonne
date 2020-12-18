@@ -14,7 +14,6 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = Beacon.class, name = "Beacon")
 })
 public class DMXObject implements Serializable {
-
     private String name;
     private Integer universe;
     private Integer startChannel;
