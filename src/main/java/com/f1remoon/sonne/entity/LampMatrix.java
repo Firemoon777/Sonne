@@ -13,6 +13,8 @@ public class LampMatrix extends DMXObject {
     private static BlockData disabled = Bukkit.createBlockData("minecraft:redstone_lamp[lit=false]");
     private static BlockData enabled = Bukkit.createBlockData("minecraft:redstone_lamp[lit=true]");
 
+    public LampMatrix() {}
+
     public LampMatrix(Location l1, Location l2) {
         this.start = new Location(l1.getWorld(),
                 Math.min(l1.getBlockX(), l2.getBlockX()),

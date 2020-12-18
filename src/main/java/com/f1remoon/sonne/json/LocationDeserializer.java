@@ -27,7 +27,7 @@ public class LocationDeserializer extends StdDeserializer<Location> {
     public Location deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         ObjectCodec codec = p.getCodec();
         JsonNode node = codec.readTree(p);
-        String name = node.get("name").asText();
+        String name = node.get("world").asText();
         Double x = node.get("x").asDouble();
         Double y = node.get("y").asDouble();
         Double z = node.get("z").asDouble();

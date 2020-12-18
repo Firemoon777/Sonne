@@ -1,7 +1,18 @@
 package com.f1remoon.sonne.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.io.Serializable;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = LampMatrix.class, name = "LampMatrix"),
+        @JsonSubTypes.Type(value = Beacon.class, name = "Beacon")
+})
 public class DMXObject implements Serializable {
 
     private String name;
