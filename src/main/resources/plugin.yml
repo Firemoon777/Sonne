@@ -2,4 +2,19 @@ name: Sonne
 version: ${project.version}
 main: com.f1remoon.sonne.Sonne
 api-version: 1.16
-depend: [LightAPI]
+depend:
+  - LightAPI
+commands:
+  add:
+    description: Your description
+    usage: /add
+    permission: com.f1remoon.sonne.add
+  list:
+    description: Your description
+    usage: /list
+    permission: com.f1remoon.sonne.list
+  delete:
+    description: Your description
+    usage: /delete
+    permission: com.f1remoon.sonne.delete
+

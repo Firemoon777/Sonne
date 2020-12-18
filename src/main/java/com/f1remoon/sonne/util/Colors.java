@@ -42,11 +42,11 @@ public class Colors {
         put("BLACK", BLACK);
     }};
 
-    private double distance(byte[] a, byte[] b) {
+    public static double distance(byte[] a, byte[] b) {
         return Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2) + Math.pow(a[2] - b[2], 2));
     }
 
-    private String findColor(byte[] rgb) {
+    public static String findColor(byte[] rgb) {
         if(rgb[0] == 0 && rgb[1] == 0 && rgb[2] == 0) {
             return null;
         }

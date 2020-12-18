@@ -28,4 +28,8 @@ public class E131Socket {
     public void close() {
         this.socket.close();
     }
+
+    public boolean isClosed() {
+        return this.socket.isClosed();
+    }
 }
