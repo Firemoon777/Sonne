@@ -3,7 +3,6 @@ package com.f1remoon.sonne.entity;
 import java.io.Serializable;
 
 public class DMXObject implements Serializable {
-
     private String name;
     private Integer universe;
     private Integer startChannel;
