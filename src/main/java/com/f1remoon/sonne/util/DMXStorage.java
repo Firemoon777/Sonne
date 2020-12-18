@@ -2,6 +2,11 @@ package com.f1remoon.sonne.util;
 
 import com.f1remoon.sonne.entity.DMXObject;
 import com.f1remoon.sonne.entity.LampMatrix;
+import com.f1remoon.sonne.json.LocationDeserializer;
+import com.f1remoon.sonne.json.LocationSerializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import net.md_5.bungee.api.chat.hover.content.ItemSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -37,16 +42,21 @@ public class DMXStorage implements Serializable {
     }
 
     public static void load(File f) throws IOException, ClassNotFoundException {
-        FileInputStream fileInputStream = new FileInputStream(f);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        instance = (DMXStorage) objectInputStream.readObject();
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Location.class, new LocationDeserializer());
+        objectMapper.registerModule(module);
+
+        instance = objectMapper.readValue(f, DMXStorage.class);
     }
 
     public static void save(File f) throws IOException {
-        f.createNewFile();
-        FileOutputStream outputStream = new FileOutputStream(f, false);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-        objectOutputStream.writeObject(instance);
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(Location.class, new LocationSerializer());
+        objectMapper.registerModule(module);
+
+        objectMapper.writeValue(f, instance);
     }
 
 }

@@ -26,7 +26,7 @@ public final class Sonne extends JavaPlugin {
             data.mkdir();
         }
 
-        dmxFile = new File(data.toString() + "/dmx.bin");
+        dmxFile = new File(data.toString() + "/dmx.json");
         try {
             DMXStorage.load(dmxFile);
         } catch (FileNotFoundException ignored) {
