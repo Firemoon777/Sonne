@@ -1,9 +1,6 @@
 package com.f1remoon.sonne.util;
 
-import com.f1remoon.sonne.entity.DMXObject;
-import com.f1remoon.sonne.entity.FireDispenser;
-import com.f1remoon.sonne.entity.Lamp;
-import com.f1remoon.sonne.entity.LampMatrix;
+import com.f1remoon.sonne.entity.*;
 import com.f1remoon.sonne.json.LocationDeserializer;
 import com.f1remoon.sonne.json.LocationSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,6 +47,11 @@ public class DMXStorage implements Serializable {
     public void addFireDispenser(Location l) {
         FireDispenser dispenser = new FireDispenser(l);
         objects.add(dispenser);
+    }
+
+    public void addBeacon(Location l) {
+        Beacon beacon = new Beacon(l);
+        objects.add(beacon);
     }
 
     public static void load(File f) throws IOException, ClassNotFoundException {

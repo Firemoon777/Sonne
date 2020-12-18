@@ -31,6 +31,10 @@ public class PlayerInteractListener implements Listener {
                 DMXStorage.getInstance().addLamp(l);
             } else if(blk.getType() == Material.DISPENSER) {
                 DMXStorage.getInstance().addFireDispenser(l);
+            } else if(blk.getType() == Material.BEACON) {
+                DMXStorage.getInstance().addBeacon(l);
+            } else {
+                return;
             }
             event.setCancelled(true);
             event.getPlayer().sendMessage(String.format("Success, coords: %d %d %d", l.getBlockX(), l.getBlockY(), l.getBlockZ()));
