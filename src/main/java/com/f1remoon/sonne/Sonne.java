@@ -20,8 +20,16 @@ public final class Sonne extends JavaPlugin {
     private E131Server server;
     private File dmxFile;
 
+    private static Sonne instance;
+
+    public static Sonne getInstance() {
+        return instance;
+    }
+
     @Override
     public void onEnable() {
+        instance = this;
+
         File data = getDataFolder();
         if(!data.exists()) {
             data.mkdir();

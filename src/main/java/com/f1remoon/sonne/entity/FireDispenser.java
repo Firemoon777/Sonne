@@ -1,6 +1,7 @@
 package com.f1remoon.sonne.entity;
 
 import com.f1remoon.sonne.effect.FireLine;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 public class FireDispenser extends DMXObject {

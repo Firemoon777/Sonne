@@ -1,7 +1,6 @@
 package com.f1remoon.sonne.command;
 
-import com.f1remoon.sonne.entity.DMXObject;
-import com.f1remoon.sonne.entity.LampMatrix;
+import com.f1remoon.sonne.entity.*;
 import com.f1remoon.sonne.util.DMXStorage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,25 +15,31 @@ public class ListCommand implements TabExecutor {
         sender.sendMessage("Total objects: " + DMXStorage.getInstance().getObjects().size());
         Integer startChannel = 0;
         for(DMXObject o : DMXStorage.getInstance().getObjects()) {
-            sender.sendMessage("[" + o.getName() + "]");
-            sender.sendMessage("  DMX Universe: " + o.getUniverse());
-            sender.sendMessage("  Start channel: " + startChannel);
-            sender.sendMessage("  Total channels: " + o.getChannelCount());
-            startChannel += o.getChannelCount();
 
+            String type = "";
+            String data = "";
             if(o instanceof LampMatrix) {
-                LampMatrix lampMatrix = (LampMatrix)o;
-                sender.sendMessage("  Type: LampMatrix");
-                sender.sendMessage(String.format(
-                        "  Location: (%d, %d, %d) -> (%d, %d, %d)",
-                        lampMatrix.getStart().getBlockX(),
-                        lampMatrix.getStart().getBlockY(),
-                        lampMatrix.getStart().getBlockZ(),
-                        lampMatrix.getEnd().getBlockX(),
-                        lampMatrix.getEnd().getBlockY(),
-                        lampMatrix.getEnd().getBlockZ()
-                ));
+                type = "LampMatrix";
+            } else if(o instanceof Beacon) {
+                Beacon beacon = (Beacon)o;
+                type = "Beacon";
+                data = String.format("(%d; %d; %d)", beacon.getLocation().getBlockX(), beacon.getLocation().getBlockY(), beacon.getLocation().getBlockZ());
+            } else if(o instanceof Lamp) {
+                Lamp lamp = (Lamp)o;
+                type = "Lamp";
+                data = String.format("(%d; %d; %d)", lamp.getLocation().getBlockX(), lamp.getLocation().getBlockY(), lamp.getLocation().getBlockZ());
+            } else if(o instanceof Light) {
+                Light light = (Light)o;
+                type = "Light";
+                data = String.format("(%d; %d; %d)", light.getLocation().getBlockX(), light.getLocation().getBlockY(), light.getLocation().getBlockZ());
+            } else if(o instanceof FireDispenser) {
+                FireDispenser fireDispenser = (FireDispenser)o;
+                type = "FireDispenser";
+                data = String.format("(%d; %d; %d)", fireDispenser.getLocation().getBlockX(), fireDispenser.getLocation().getBlockY(), fireDispenser.getLocation().getBlockZ());
             }
+            sender.sendMessage(String.format("[%4d-%4d] %s %s", startChannel, startChannel+o.getChannelCount(), type, data));
+
+            startChannel += o.getChannelCount();
         }
         return true;
     }

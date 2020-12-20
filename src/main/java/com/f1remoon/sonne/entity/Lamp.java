@@ -7,8 +7,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Lamp extends DMXObject {
 
-    private static BlockData disabled = Bukkit.createBlockData("minecraft:redstone_lamp[lit=false]");
-    private static BlockData enabled = Bukkit.createBlockData("minecraft:redstone_lamp[lit=true]");
+    private static final BlockData disabled = Bukkit.createBlockData("minecraft:redstone_lamp[lit=false]");
+    private static final BlockData enabled = Bukkit.createBlockData("minecraft:redstone_lamp[lit=true]");
 
     private Location location;
 
@@ -27,6 +27,9 @@ public class Lamp extends DMXObject {
             blockData = disabled;
         } else {
             blockData = enabled;
+        }
+        if(location.getBlock().getBlockData().matches(blockData)) {
+            return;
         }
         new BukkitRunnable() {
             @Override
