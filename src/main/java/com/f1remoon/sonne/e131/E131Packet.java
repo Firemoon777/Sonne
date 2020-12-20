@@ -7,7 +7,7 @@ import com.f1remoon.sonne.e131.layer.FramingLayer;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public class E131Packet {
+public class E131Packet implements Comparable<E131Packet> {
     /* E1.31 Private Constants */
     private final static Integer _E131_ROOT_VECTOR = 0x00000004;
     private final static Integer _E131_FRAME_VECTOR = 0x00000002;
@@ -63,5 +63,16 @@ public class E131Packet {
     @Override
     public String toString() {
         return this.root.toString() + this.frame.toString() + this.dmp.toString();
+    }
+
+    @Override
+    public int compareTo(E131Packet e131Packet) {
+        if(this.frame.seq_number < e131Packet.frame.seq_number) {
+            return -1;
+        }
+        if(this.frame.seq_number > e131Packet.frame.seq_number) {
+            return 1;
+        }
+        return Short.compare(this.frame.universe, e131Packet.frame.universe);
     }
 }

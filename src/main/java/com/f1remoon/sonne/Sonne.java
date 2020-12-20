@@ -3,6 +3,7 @@ package com.f1remoon.sonne;
 import com.f1remoon.sonne.command.AddCommand;
 import com.f1remoon.sonne.command.DeleteCommand;
 import com.f1remoon.sonne.command.ListCommand;
+import com.f1remoon.sonne.e131.E131Socket;
 import com.f1remoon.sonne.listener.PlayerInteractListener;
 import com.f1remoon.sonne.server.E131Server;
 import com.f1remoon.sonne.util.DMXStorage;
@@ -34,12 +35,22 @@ public final class Sonne extends JavaPlugin {
             e.printStackTrace();
         }
 
+        File config = new File(data.toString() + "/config.yml");
+        if(!config.exists()) {
+            this.saveDefaultConfig();
+        }
+
+        String address = getConfig().getString("ip", "0.0.0.0");
+        Integer port = getConfig().getInt("port", E131Socket.E131_DEFAULT_PORT);
         try {
-            this.server = new E131Server();
+            this.server = new E131Server(address, port);
             this.server.start();
         } catch (SocketException e) {
             e.printStackTrace();
         }
+
+        this.server.setUniverseStart(getConfig().getInt("universe.start", 1));
+        this.server.setUniverseCount(getConfig().getInt("universe.count", 1));
 
         getCommand("add").setExecutor(new AddCommand());
         getCommand("list").setExecutor(new ListCommand());

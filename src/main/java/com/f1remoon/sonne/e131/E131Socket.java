@@ -1,9 +1,7 @@
 package com.f1remoon.sonne.e131;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.net.*;
 
 public class E131Socket {
     /* E1.31 Public Constants */
@@ -12,9 +10,13 @@ public class E131Socket {
 
     final private DatagramSocket socket;
 
+    public E131Socket(String address, Integer port) throws SocketException {
+        InetSocketAddress addr = new InetSocketAddress(address, port);
+        this.socket = new DatagramSocket(addr);
+    }
+
     public E131Socket(Integer port) throws SocketException {
-        this.socket = new DatagramSocket(port);
-        this.socket.setReuseAddress(true);
+        this("0.0.0.0", port);
     }
 
     public E131Packet receive() throws IOException {

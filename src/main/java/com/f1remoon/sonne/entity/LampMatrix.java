@@ -38,8 +38,8 @@ public class LampMatrix extends DMXObject {
 
         Integer i = 0;
         for(int x = start.getBlockX(); x <= end.getBlockX(); x++) {
-            for(int z = start.getBlockZ(); z < end.getBlockZ(); z++) {
-                for(int y = start.getBlockY(); y < end.getBlockY(); y++) {
+            for(int z = start.getBlockZ(); z <= end.getBlockZ(); z++) {
+                for(int y = start.getBlockY(); y <= end.getBlockY(); y++) {
                     BlockData blockData;
                     byte r = dmxData[i + 0];
                     byte g = dmxData[i + 1];
@@ -53,6 +53,10 @@ public class LampMatrix extends DMXObject {
                     }
 
                     Location l = new Location(start.getWorld(), x, y, z);
+                    // Do not touch blocks without update
+                    if(l.getBlock().getBlockData().matches(blockData)) {
+                        continue;
+                    }
                     new BukkitRunnable() {
                         @Override
                         public void run() {
