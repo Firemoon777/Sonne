@@ -13,6 +13,7 @@ import java.io.Serializable;
         @JsonSubTypes.Type(value = LampMatrix.class, name = "LampMatrix"),
         @JsonSubTypes.Type(value = Beacon.class, name = "Beacon"),
         @JsonSubTypes.Type(value = FireDispenser.class, name = "FireDispenser"),
+        @JsonSubTypes.Type(value = Light.class, name = "Light"),
         @JsonSubTypes.Type(value = Lamp.class, name = "Lamp")
 })
 public class DMXObject implements Serializable {

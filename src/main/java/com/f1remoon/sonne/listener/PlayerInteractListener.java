@@ -1,6 +1,7 @@
 package com.f1remoon.sonne.listener;
 
 import com.f1remoon.sonne.util.DMXStorage;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -8,8 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
-
-import java.util.Objects;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerInteractListener implements Listener {
     @EventHandler
@@ -33,6 +33,9 @@ public class PlayerInteractListener implements Listener {
                 DMXStorage.getInstance().addFireDispenser(l);
             } else if(blk.getType() == Material.BEACON) {
                 DMXStorage.getInstance().addBeacon(l);
+            } else if(blk.getType() == Material.GLOWSTONE) {
+                DMXStorage.getInstance().addLight(l);
+                l.getBlock().setType(Material.AIR);
             } else {
                 return;
             }
