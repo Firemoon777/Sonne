@@ -75,6 +75,8 @@ public class E131Server extends Thread {
                 if(currentSequenceNumber != packet.frame.seq_number) {
                     // Packet from different sequence. Maybe bug or packet loss. Just drop previous sequence
                     packetList.clear();
+                    // set correct number for current sequence
+                    currentSequenceNumber = packet.frame.seq_number;
                 }
                 packetList.add(packet);
 
