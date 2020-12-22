@@ -59,6 +59,11 @@ public class DMXStorage implements Serializable {
         objects.add(light);
     }
 
+    public void addTorch(Location l) {
+        RedstoneTorch torch = new RedstoneTorch(l);
+        objects.add(torch);
+    }
+
     public static void load(File f) throws IOException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();

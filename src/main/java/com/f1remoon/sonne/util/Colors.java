@@ -53,9 +53,6 @@ public class Colors {
         String result = "";
         double d = 100000000;
         for(String key : COLORS.keySet()) {
-            Bukkit.getLogger().info(String.format("%02x %02x %02x ~ %02x %02x %02x -> %.6f",
-                    rgb[0], rgb[1], rgb[2], COLORS.get(key)[0], COLORS.get(key)[1], COLORS.get(key)[2],
-                    distance(COLORS.get(key), rgb)));
             if(d > distance(COLORS.get(key), rgb)) {
                 d = distance(COLORS.get(key), rgb);
                 result = key;

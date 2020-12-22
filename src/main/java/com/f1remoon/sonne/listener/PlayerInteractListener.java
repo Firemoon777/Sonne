@@ -36,6 +36,9 @@ public class PlayerInteractListener implements Listener {
             } else if(blk.getType() == Material.GLOWSTONE) {
                 DMXStorage.getInstance().addLight(l);
                 l.getBlock().setType(Material.AIR);
+            } else if(blk.getType() == Material.REDSTONE_TORCH) {
+                DMXStorage.getInstance().addTorch(l);
+                l.getBlock().setType(Material.AIR);
             } else {
                 return;
             }
